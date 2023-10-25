@@ -1,0 +1,5 @@
+<div class='wrapper'>
+  <div *ngFor='let meetups of meetupsService.sourceData'>
+  <app-meetup [name]='meetups.MeetupName' [description]='meetups.MeetupDescription'></app-meetup>
+  </div>
+</div>

@@ -3,10 +3,16 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { MeetupComponent } from './components/meetup/meetup.component';
+import { MeetupsFeedComponent } from './components/meetups-feed/meetups-feed.component';
+import { HeaderComponent } from './components/header/header.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    MeetupComponent,
+    MeetupsFeedComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
