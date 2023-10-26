@@ -1,0 +1,103 @@
+/* MIXINS */
+
+/* INPUTS */
+
+@mixin auth-input {
+  &__input {
+    box-sizing: border-box;
+    background: var(--color-default);
+    color: var(--color-primary);
+    border: 0;
+    border-radius: var(--border-radius-normal);
+    padding: 12px 20px;
+    height: 50px;
+    width: 342px;
+    &:-webkit-autofill {
+      -webkit-text-fill-color: var(--color-primary);
+      -webkit-box-shadow: 0 0 0 1000px var(--color-default) inset;
+      transition: background-color 5000s ease-in-out 0s;
+    }
+  }
+}
+
+/* FONTS */
+
+@mixin smallText {
+  font-family:
+    Open Sans,
+    sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+@mixin normalText {
+  font-family:
+    Open Sans,
+    sans-serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+@mixin largeText {
+  font-family:
+    Open Sans,
+    sans-serif;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+@mixin titleText {
+  font-family:
+    Cherry Bomb,
+    sans-serif;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+@mixin logoText {
+  font-family:
+    Open Sans Hebrew Condensed,
+    sans-serif;
+  font-size: 56px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+/* BUTTONS */
+
+@mixin button {
+  background-color: red;
+}
+
+@mixin login-button {
+  width: 125px;
+  height: 49px;
+  padding: 10px 15px;
+  border-radius: var(--border-radius-normal);
+  box-shadow: var(--shadow-normal);
+}
+
+@mixin action-button {
+  @include normalText;
+  width: 160px;
+  height: 50px;
+  padding: 10px 15px;
+  border-radius: var(--border-radius-normal);
+  box-shadow: var(--shadow-normal);
+}
+
+@mixin arrow-button {
+  width: 70px;
+  height: 50px;
+  padding: 14px 20px 13px 21px;
+  border-radius: var(--border-radius-normal);
+}

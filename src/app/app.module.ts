@@ -6,19 +6,21 @@ import { AppComponent } from './app.component';
 import { MeetupComponent } from './components/meetup/meetup.component';
 import { MeetupsFeedComponent } from './components/meetups-feed/meetups-feed.component';
 import { HeaderComponent } from './components/header/header.component';
+import { AuthComponent } from './components/auth/auth.component';
+import {NgOptimizedImage} from "@angular/common";
+import { AboutComponent } from './components/about/about.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MeetupComponent,
     MeetupsFeedComponent,
-    HeaderComponent
+    HeaderComponent,
+    AuthComponent,
+    AboutComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
+  imports: [BrowserModule, AppRoutingModule, NgOptimizedImage],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
