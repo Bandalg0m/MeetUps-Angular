@@ -18,6 +18,9 @@
 
   &__app {
     margin-right: 30px;
+    :hover {
+      cursor: pointer;
+    }
   }
 
   &__org {
@@ -25,6 +28,9 @@
     flex-direction: column;
     justify-content: center;
     gap: 10px;
+    :hover {
+      cursor: pointer;
+    }
   }
 }
 
@@ -43,5 +49,11 @@
       cursor: pointer;
       color: var(--color-hover);
     }
+  }
+}
+
+.header-controls {
+  &__auth {
+    cursor: pointer;
   }
 }
