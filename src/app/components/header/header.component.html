@@ -1,32 +1,45 @@
 <div class="header-wrapper">
   <div class="header-logo-container">
     <div class="header-logo-container__app">
-      <img ngSrc="assets/images/logos/MeetUps.svg" alt="Meetups" height="74" width="197" priority />
+      <img
+        routerLink=""
+        ngSrc="assets/images/logos/MeetUps.svg"
+        alt="Meetups"
+        height="74"
+        width="197"
+        priority
+      />
     </div>
     <div class="header-logo-container__org">
-      <img
-        ngSrc="assets/images/logos/fil-it.svg"
-        alt="Философия.ИТ"
-        height="30"
-        width="187"
-        priority
-      />
-      <img
-        ngSrc="assets/images/logos/liga.svg"
-        alt="Лига цифровой экономики"
-        height="30"
-        width="100"
-        priority
-      />
+      <a href="https://www.fil-it.ru/">
+        <img
+          ngSrc="assets/images/logos/fil-it.svg"
+          alt="Философия.ИТ"
+          height="30"
+          width="187"
+          priority
+        />
+      </a>
+      <a href="https://www.digitalleague.ru/">
+        <img
+          ngSrc="assets/images/logos/liga.svg"
+          alt="Лига цифровой экономики"
+          height="30"
+          width="100"
+          priority
+        />
+      </a>
     </div>
   </div>
-  <nav class="header-nav">
-    <span class="header-nav__item">Все митапы</span>
-    <span class="header-nav__item">Мои митапы</span>
-    <span class="header-nav__item">Пользователи</span>
+  <nav [ngSwitch]="authService.role" class="header-nav">
+    <span *ngIf="authService.role" routerLink="/meetups" class="header-nav__item">Все митапы</span>
+    <span *ngIf="authService.role" class="header-nav__item">Мои митапы</span>
+    <span *ngIf="authService.role" class="header-nav__item">Пользователи</span>
   </nav>
   <div class="header-controls">
     <img
+      class="header-controls__auth"
+      routerLink="/auth"
       ngSrc="assets/images/controls/mdi_person.svg"
       alt="Person"
       height="50"
