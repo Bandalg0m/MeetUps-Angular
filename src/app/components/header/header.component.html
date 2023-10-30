@@ -31,10 +31,10 @@
       </a>
     </div>
   </div>
-  <nav class="header-nav">
-    <span routerLink="/meetups" class="header-nav__item">Все митапы</span>
-    <span class="header-nav__item">Мои митапы</span>
-    <span class="header-nav__item">Пользователи</span>
+  <nav [ngSwitch]="authService.role" class="header-nav">
+    <span *ngIf="authService.role" routerLink="/meetups" class="header-nav__item">Все митапы</span>
+    <span *ngIf="authService.role" class="header-nav__item">Мои митапы</span>
+    <span *ngIf="authService.role" class="header-nav__item">Пользователи</span>
   </nav>
   <div class="header-controls">
     <img
