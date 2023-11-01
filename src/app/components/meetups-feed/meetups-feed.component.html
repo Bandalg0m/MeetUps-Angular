@@ -1,5 +1,13 @@
-<div class='wrapper'>
-  <div *ngFor='let meetups of meetupsService.sourceData'>
-  <app-meetup [name]='meetups.MeetupName' [description]='meetups.MeetupDescription'></app-meetup>
+<div *ngIf="meetupsService.meetups$" class="meetups-feed-wrapper">
+  <div
+    class="meetups-feed-item"
+    *ngFor="let meetup of meetupsService.meetups$ | async; trackBy: trackByFn"
+  >
+    <app-meetup
+      (unsubscribeMeetup)="unsubscribe($event)"
+      (subscribeMeetup)="subscribe($event)"
+      [currentUserId]="currentUserId"
+      [data]="meetup"
+    ></app-meetup>
   </div>
 </div>

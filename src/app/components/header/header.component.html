@@ -31,10 +31,15 @@
       </a>
     </div>
   </div>
-  <nav [ngSwitch]="authService.role" class="header-nav">
-    <span *ngIf="authService.role" routerLink="/meetups" class="header-nav__item">Все митапы</span>
-    <span *ngIf="authService.role" class="header-nav__item">Мои митапы</span>
-    <span *ngIf="authService.role" class="header-nav__item">Пользователи</span>
+  <nav class="header-nav">
+    <span
+      *ngIf="authService.isUserAuthorized$ | async"
+      routerLink="/meetups"
+      class="header-nav__item"
+      >Все митапы</span
+    >
+    <span *ngIf="authService.isUserAuthorized$ | async" class="header-nav__item">Мои митапы</span>
+    <span *ngIf="authService.isUserAuthorized$ | async" class="header-nav__item">Пользователи</span>
   </nav>
   <div class="header-controls">
     <img

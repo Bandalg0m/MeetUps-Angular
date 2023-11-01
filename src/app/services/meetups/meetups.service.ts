@@ -1,14 +1,71 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../../../environments/environment';
+import { IMeetup } from '../../../utils/types/types';
+import { BehaviorSubject, map, Subject, takeUntil } from 'rxjs';
 import { Meetup } from '../../entities/meetup';
 
-@Injectable({
-  providedIn: 'root',
-})
-export class MeetupsService {
-  public meetupOne = new Meetup(1, 'name1', 'desc1');
-  public meetupTwo = new Meetup(2, 'name2', 'desc2');
-  public meetupThree = new Meetup(3, 'name3', 'desc3');
-  public sourceData = [this.meetupOne, this.meetupTwo, this.meetupThree];
+@Injectable()
+export class MeetupsService implements OnDestroy {
+  private destroy$ = new Subject<void>();
+  private readonly refreshDataInterval: NodeJS.Timeout;
+  public meetups$: BehaviorSubject<Meetup[]> = new BehaviorSubject([] as Meetup[]);
 
-  constructor() {}
+  constructor(private http: HttpClient) {
+    this.getMeetups();
+    this.meetups$.pipe(takeUntil(this.destroy$));
+    this.refreshDataInterval = setInterval(() => this.getMeetups(), 10000);
+  }
+
+  public getMeetups() {
+    return this.http
+      .get<IMeetup[]>(`${environment.apiUrl}/meetup`)
+      .pipe(
+        takeUntil(this.destroy$),
+        map((data) =>
+          data.map(
+            (item) =>
+              new Meetup(
+                item.id,
+                item.name,
+                item.description,
+                item.location,
+                item.target_audience,
+                item.need_to_know,
+                item.will_happen,
+                item.reason_to_come,
+                item.time,
+                item.duration,
+                item.createdBy,
+                item.users,
+                item.createdAt,
+                item.owner
+              )
+          )
+        )
+      )
+      .subscribe((value) => {
+        this.meetups$.next(value);
+      });
+  }
+
+  public subscribeUser(userId: number, meetupID: number) {
+    this.http
+      .put(`${environment.apiUrl}/meetup`, { idMeetup: meetupID, idUser: userId })
+      .subscribe(() => this.getMeetups());
+  }
+
+  public unsubscribeUser(userId: number, meetupID: number) {
+    this.http
+      .delete(`${environment.apiUrl}/meetup`, {
+        body: { idMeetup: meetupID, idUser: userId },
+      })
+      .subscribe(() => this.getMeetups());
+  }
+
+  ngOnDestroy() {
+    clearInterval(this.refreshDataInterval);
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
 }

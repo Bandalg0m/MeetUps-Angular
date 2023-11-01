@@ -1,19 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
-import { map } from 'rxjs';
+import { BehaviorSubject, map } from 'rxjs';
 import { IUser } from '../../../utils/types/types';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  public role: string[] | null = null;
+  public isUserAuthorized$: BehaviorSubject<boolean> = new BehaviorSubject(false);
   constructor(private http: HttpClient) {}
-
-  public set Role(value: string[]) {
-    this.role = value;
-  }
 
   public login(email: string, password: string) {
     return this.http
@@ -21,12 +17,14 @@ export class AuthService {
       .pipe(
         map((res) => {
           res.token ? localStorage.setItem('auth-token', res.token) : null;
+          this.isUserAuthorized$.next(true);
         })
       );
   }
 
   public logout() {
     localStorage.removeItem('auth-token');
+    this.isUserAuthorized$.next(false);
   }
 
   public get token(): string | null {

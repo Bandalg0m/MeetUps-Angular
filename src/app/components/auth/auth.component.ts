@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth/auth.service';
 import { Router } from '@angular/router';
 
@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
   selector: 'app-auth',
   templateUrl: './auth.component.html',
   styleUrls: ['./auth.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AuthComponent implements OnInit {
   public email: string = '';
@@ -20,11 +21,7 @@ export class AuthComponent implements OnInit {
   login(): void {
     this.authService.login(this.email, this.password).subscribe(() => {
       /* TODO: change role assignment */
-      this.authService.userInfo
-        ? (this.authService.Role = this.authService.userInfo?.roles.map((item) => item.name)) &&
-          this.router.navigate(['meetups'])
-        : null;
-      alert(`current role is ${this.authService.role}`);
+      this.authService.userInfo ? this.router.navigate(['meetups']) : null;
     });
   }
 

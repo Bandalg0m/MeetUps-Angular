@@ -1,52 +1,59 @@
 <div class="meetup-wrapper">
   <div class="meetup-container">
-    <div class="meetup-body">
+    <div [ngSwitch]="this.isShort" class="meetup-body">
       <div class="meetup-title-container">
-        <h1 class="meetup-title-container__title">Angular vs React</h1>
-        <span class="meetup-title-container__counter">321 подписчик</span>
+        <h1 class="meetup-title-container__title">{{ data.name }}</h1>
+        <span class="meetup-title-container__counter">{{ data.users.length }} подписчик</span>
       </div>
-      <div class="meetup-content">
-        <p class="meetup-content__main-description">
-          А здесь я ещё более подробно напишу об том, отб этом. О том, об этом. О том, об этом. О
-          том, об этом. О том, об этом. О том, об этом. О том, об этом. О том, об этом. А здесь я
-          ещё более подробно напишу об том, отб этом. О том, об этом. О том, об этом. О том, об
-          этом. О том, об этом. О том, об этом. О том, об этом. О том, об этом. А здесь я ещё более
-          подробно напишу об том, отб этом. О том, об этом. О том, об этом. О том, об этом. О том,
-          об этом. О том, об этом. О том, об этом. О том, об этом.
-        </p>
+      <p class="meetup-content__main-description">
+        {{ data.description }}
+      </p>
+      <div *ngSwitchCase="false" class="meetup-content">
         <h2 class="meetup-content__title">Целевая аудитория</h2>
-        <p class="meetup-content__description">разрабы, аналитики, и проч</p>
+        <p class="meetup-content__description">{{ data.target_audience }}</p>
         <h2 class="meetup-content__title">Что надо знать?</h2>
-        <p class="meetup-content__description">вот это вот это вот это вот это</p>
+        <p class="meetup-content__description">{{ data.need_to_know }}</p>
         <h2 class="meetup-content__title">Что будет?</h2>
         <p class="meetup-content__description">
-          вот этому научу вот это расскажу вот этому научу вот этому расскажу
+          {{ data.will_happen }}
         </p>
         <h2 class="meetup-content__title">Почему надо обязательно прийти?</h2>
-        <p class="meetup-content__description">У меня красный пояс по C++</p>
-        <div class="meetup-author">
-          <img
-            ngSrc="assets/images/controls/small-mdi_person.svg"
-            alt="person-icon"
-            height="25"
-            width="25"
-            priority
-          />
-          <span class="meetup-author__name">Александр Козаченко</span>
-        </div>
+        <p class="meetup-content__description">{{ data.reason_to_come }}</p>
       </div>
-      <!--      <div>Название: {{ name }}</div>-->
-      <!--      <div>Описане: {{ description }}</div>-->
+      <div class="meetup-author">
+        <img
+          ngSrc="assets/images/controls/small-mdi_person.svg"
+          alt="person-icon"
+          height="25"
+          width="25"
+          priority
+        />
+        <span class="meetup-author__name">{{ data.owner.fio }}</span>
+      </div>
     </div>
     <div class="meetup-aside">
       <div class="meetup-info">
-        <span class="meetup-info__date">14.08.22 13:00</span>
-        <span class="meetup-info__location">Переговорная 14</span>
+        <span class="meetup-info__date">{{ data.time | date: 'dd.MM.YY HH:mm' }}</span>
+        <span class="meetup-info__location">{{ data.location }}</span>
       </div>
       <div class="meetup-controls">
-        <button class="meetup-controls__action-button">Я пойду</button>
-        <button class="meetup-controls__hide-button">
+        <button
+          *ngIf="!isUserSubbed"
+          (click)="handleSubscribe()"
+          class="meetup-controls__action-button_subscribe"
+        >
+          Я пойду
+        </button>
+        <button
+          *ngIf="isUserSubbed"
+          (click)="handleUnsubscribe()"
+          class="meetup-controls__action-button_unsubscribe"
+        >
+          Не смогу пойти
+        </button>
+        <button (click)="handleViewState()" class="meetup-controls__hide-button">
           <img
+            [class.short]="isShort"
             ngSrc="assets/images/controls/arrow-up.svg"
             alt="arrow"
             width="29"

@@ -93,12 +93,24 @@
   display: flex;
   gap: 10px;
   &__action-button {
-    color: var(--color-bold);
-    background-color: var(--color-secondary);
-    @include action-button;
+    &_subscribe {
+      color: var(--color-bold);
+      background-color: var(--color-secondary);
+      @include action-button;
+    }
+    &_unsubscribe {
+      white-space: nowrap;
+      color: var(--color-secondary);
+      background-color: var(--color-primary);
+      @include action-button;
+    }
   }
   &__hide-button {
     background-color: var(--color-accent);
     @include arrow-button;
   }
+}
+
+.short {
+  transform: rotate(180deg);
 }
