@@ -1,0 +1,67 @@
+<div class="meetup-wrapper">
+  <div class="meetup-container">
+    <div [ngSwitch]="this.isShort" class="meetup-body">
+      <div class="meetup-title-container">
+        <h1 class="meetup-title-container__title">{{ data.name }}</h1>
+        <span class="meetup-title-container__counter">{{ data.users.length }} подписчик</span>
+      </div>
+      <p class="meetup-content__main-description">
+        {{ data.description }}
+      </p>
+      <div *ngSwitchCase="false" class="meetup-content">
+        <h2 class="meetup-content__title">Целевая аудитория</h2>
+        <p class="meetup-content__description">{{ data.target_audience }}</p>
+        <h2 class="meetup-content__title">Что надо знать?</h2>
+        <p class="meetup-content__description">{{ data.need_to_know }}</p>
+        <h2 class="meetup-content__title">Что будет?</h2>
+        <p class="meetup-content__description">
+          {{ data.will_happen }}
+        </p>
+        <h2 class="meetup-content__title">Почему надо обязательно прийти?</h2>
+        <p class="meetup-content__description">{{ data.reason_to_come }}</p>
+      </div>
+      <div class="meetup-author">
+        <img
+          ngSrc="assets/images/controls/small-mdi_person.svg"
+          alt="person-icon"
+          height="25"
+          width="25"
+          priority
+        />
+        <span class="meetup-author__name">{{ data.owner.fio }}</span>
+      </div>
+    </div>
+    <div class="meetup-aside">
+      <div class="meetup-info">
+        <span class="meetup-info__date">{{ data.time | date: 'dd.MM.YY HH:mm' }}</span>
+        <span class="meetup-info__location">{{ data.location }}</span>
+      </div>
+      <div class="meetup-controls">
+        <button
+          *ngIf="!isUserSubbed"
+          (click)="handleSubscribe()"
+          class="meetup-controls__action-button_subscribe"
+        >
+          Я пойду
+        </button>
+        <button
+          *ngIf="isUserSubbed"
+          (click)="handleUnsubscribe()"
+          class="meetup-controls__action-button_unsubscribe"
+        >
+          Не смогу пойти
+        </button>
+        <button (click)="handleViewState()" class="meetup-controls__hide-button">
+          <img
+            [class.short]="isShort"
+            ngSrc="assets/images/controls/arrow-up.svg"
+            alt="arrow"
+            width="29"
+            height="23"
+            priority
+          />
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,20 @@
+@import 'src/utils/styles/mixins';
+
+.about-wrapper {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+
+.about-container {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  padding-top: 50px;
+}
+
+.about-content {
+  padding-left: 93px;
+  color: var(--color-bold);
+  @include normalText;
+}

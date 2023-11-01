@@ -1,0 +1,116 @@
+@import 'src/utils/styles/mixins';
+
+.meetup-wrapper {
+  display: flex;
+  width: 100%;
+}
+
+.meetup-container {
+  display: flex;
+  width: 100%;
+  background-color: var(--color-default);
+  border: var(--border-main);
+  padding-top: 14px;
+}
+
+.meetup-body {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  padding: 0 0 12px 20px;
+}
+
+.meetup-title-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 24px;
+
+  &__title {
+    color: var(--color-bold);
+    @include titleText;
+  }
+
+  &__counter {
+    color: var(--color-accent);
+    @include normalText;
+  }
+}
+
+.meetup-content__main-description {
+  color: var(--color-primary);
+  @include normalText;
+}
+
+.meetup-content__title {
+  color: var(--color-bold);
+  @include largeText;
+}
+
+.meetup-content__description {
+  padding-left: 11px;
+  color: var(--color-primary);
+  @include normalText;
+}
+
+.meetup-author {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 18px;
+
+  &__name {
+    color: var(--color-bold);
+    @include normalText;
+  }
+}
+
+.meetup-aside {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+  width: 285px;
+}
+
+.meetup-info {
+  display: flex;
+  flex-direction: column;
+  padding-right: 20px;
+
+  &__date {
+    color: var(--color-bold);
+    @include titleText;
+  }
+
+  &__location {
+    color: var(--color-bold);
+    @include smallText;
+  }
+}
+
+.meetup-controls {
+  display: flex;
+  gap: 10px;
+  &__action-button {
+    &_subscribe {
+      color: var(--color-bold);
+      background-color: var(--color-secondary);
+      @include action-button;
+    }
+    &_unsubscribe {
+      white-space: nowrap;
+      color: var(--color-secondary);
+      background-color: var(--color-primary);
+      @include action-button;
+    }
+  }
+  &__hide-button {
+    background-color: var(--color-accent);
+    @include arrow-button;
+  }
+}
+
+.short {
+  transform: rotate(180deg);
+}

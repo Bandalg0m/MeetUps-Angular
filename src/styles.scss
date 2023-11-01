@@ -1,1 +1,43 @@
-/* You can add global styles to this file, and also import other style files */
+/* NORMALIZE*/
+@import 'normalize.css';
+
+:root {
+  /* APP VARIABLES */
+
+  /* COLORS */
+  --color-default: rgba(44, 44, 44, 1);
+  --color-secondary: rgba(76, 63, 120, 1);
+  --color-info: rgba(0, 134, 151, 1);
+  --color-primary: rgba(180, 180, 192, 1);
+  --color-accent: rgba(184, 85, 38, 1);
+  --color-background: rgba(30, 30, 30, 1);
+  --color-bold: rgba(233, 233, 233, 1);
+  --color-hover: rgba(12, 321, 33, 0.25);
+
+  /* BORDERS */
+  --border-main: 0.3px solid var(--color-primary);
+  --border-radius-normal: 5px;
+
+  /* SHADOWS */
+  --shadow-normal: 0px 4px 4px 0px rgba(62, 5, 4, 0.25);
+}
+
+* {
+  /* Global font */
+  font-family:
+    Open Sans,
+    sans-serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+h1,
+p {
+  margin: 0;
+}
+
+button {
+  border: 0;
+}

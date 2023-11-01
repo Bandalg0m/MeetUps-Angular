@@ -1,0 +1,60 @@
+@import 'src/utils/styles/mixins';
+
+.header-wrapper {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  box-sizing: border-box;
+  background-color: var(--color-default);
+  width: 100%;
+  height: 120px;
+  padding: 0 40px;
+  border: var(--border-main);
+  box-shadow: var(--shadow-normal);
+}
+
+.header-logo-container {
+  display: flex;
+  align-items: center;
+
+  &__app {
+    margin-right: 30px;
+    :hover {
+      cursor: pointer;
+    }
+  }
+
+  &__org {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+    :hover {
+      cursor: pointer;
+    }
+  }
+}
+
+.header-nav {
+  flex-grow: 2;
+  margin-left: 80px;
+  display: flex;
+  justify-content: flex-start;
+  gap: 34px;
+
+  &__item {
+    color: var(--color-bold);
+    @include titleText;
+
+    &:hover {
+      cursor: pointer;
+      color: var(--color-hover);
+    }
+  }
+}
+
+.header-controls {
+  &__auth {
+    cursor: pointer;
+  }
+}

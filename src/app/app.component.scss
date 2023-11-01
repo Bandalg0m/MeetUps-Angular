@@ -1,0 +1,31 @@
+.app-wrapper {
+  box-sizing: border-box;
+  height: 100vh;
+  width: 100vw;
+  background-color: var(--color-background);
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  height: 100vh;
+  width: 1440px;
+  margin: 0 auto;
+}
+
+.app-content {
+  display: block;
+  box-sizing: border-box;
+  height: 100%;
+  width: 100%;
+  padding: 17px 39px 80px 39px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  /* Scrollbar hiding down below */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}

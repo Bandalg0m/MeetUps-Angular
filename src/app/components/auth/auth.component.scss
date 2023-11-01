@@ -1,0 +1,58 @@
+@import 'src/utils/styles/mixins';
+
+.auth-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.auth-container {
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+  width: 342px;
+  height: 238px;
+}
+
+.auth-login {
+  @include auth-input;
+  width: 100%;
+}
+
+.auth-password {
+  @include auth-input;
+  width: 100%;
+}
+
+.auth-controls {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 37px;
+
+  &__button {
+    color: var(--color-bold);
+    background-color: var(--color-secondary);
+    @include login-button;
+
+    &:hover {
+      cursor: pointer;
+      background-color: var(--color-hover);
+    }
+  }
+
+  &__instruction {
+    display: flex;
+    align-items: center;
+    height: 50px;
+    width: 120px;
+    color: var(--color-info);
+    text-decoration: underline;
+
+    &:hover {
+      cursor: pointer;
+      color: var(--color-hover);
+    }
+  }
+}
