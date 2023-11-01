@@ -1,0 +1,111 @@
+@import 'src/utils/styles/mixins';
+
+.meetup-creation-wrapper {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.meetup-creation-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 26px;
+  width: 100%;
+  height: max-content;
+  background-color: var(--color-default);
+  border: var(--border-main);
+}
+
+.meetup-creation-title {
+  margin: 25px 0;
+}
+
+.meetup-creation-form {
+  display: flex;
+  flex-direction: column;
+  gap: 44px;
+}
+
+.meetup-creation-form-date-time {
+  display: flex;
+  gap: 170px;
+}
+
+.meetup-creation-form-item {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.meetup-creation-title {
+  color: var(--color-bold);
+  @include titleText;
+}
+
+.meetup-creation-form-item-container__input {
+  flex-grow: 2;
+}
+
+.meetup-creation-form-item-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.meetup-creation-container__title {
+  width: 130px;
+  color: var(--color-bold);
+  @include normalText;
+}
+
+.meetup-creation-form-item-container__input-wide {
+  color: var(--color-bold);
+  @include input-wide;
+}
+
+.meetup-creation-form-item-container__input-narrow {
+  color: var(--color-bold);
+  @include input-narrow;
+}
+
+.meetup-creation-form-item-container__textarea-narrow {
+  color: var(--color-bold);
+  @include textarea-narrow;
+}
+
+.meetup-creation-form-item-container__textarea-wide {
+  color: var(--color-bold);
+  @include textarea-wide;
+}
+
+.meetup-creation-controls {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: flex-end;
+  gap: 13px;
+  width: 100%;
+  padding: 20px;
+
+  &__button {
+    @include action-button;
+    color: var(--color-secondary);
+    background-color: var(--color-primary);
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    &:first-child {
+      color: var(--color-bold);
+      background-color: var(--color-accent);
+    }
+
+    &:last-child {
+      color: var(--color-bold);
+      background-color: var(--color-secondary);
+    }
+  }
+}
