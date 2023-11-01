@@ -14,6 +14,7 @@ import { AuthInterceptor } from './interceptors/auth/auth-interceptor.service';
 import { UsersComponent } from './components/users/users.component';
 import { MeetupCreationComponent } from './components/meetup-creation/meetup-creation.component';
 import { MeetupEditComponent } from './components/meetup-edit/meetup-edit.component';
+import { MyMeetupsComponent } from './components/my-meetups/my-meetups.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { MeetupEditComponent } from './components/meetup-edit/meetup-edit.compon
     UsersComponent,
     MeetupCreationComponent,
     MeetupEditComponent,
+    MyMeetupsComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, NgOptimizedImage, HttpClientModule, FormsModule],
   providers: [

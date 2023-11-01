@@ -104,6 +104,11 @@
       background-color: var(--color-primary);
       @include action-button;
     }
+    &_edit {
+      color: var(--color-bold);
+      background-color: var(--color-secondary);
+      @include action-button;
+    }
   }
   &__hide-button {
     background-color: var(--color-accent);

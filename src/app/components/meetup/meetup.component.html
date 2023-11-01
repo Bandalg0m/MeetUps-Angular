@@ -38,14 +38,21 @@
       </div>
       <div class="meetup-controls">
         <button
-          *ngIf="!isUserSubbed"
+          *ngIf="isUserOwner"
+          routerLink="/meetup-edit"
+          class="meetup-controls__action-button_edit"
+        >
+          Редактировать
+        </button>
+        <button
+          *ngIf="!isUserSubbed && !isUserOwner"
           (click)="handleSubscribe()"
           class="meetup-controls__action-button_subscribe"
         >
           Я пойду
         </button>
         <button
-          *ngIf="isUserSubbed"
+          *ngIf="!isUserOwner && isUserSubbed"
           (click)="handleUnsubscribe()"
           class="meetup-controls__action-button_unsubscribe"
         >
