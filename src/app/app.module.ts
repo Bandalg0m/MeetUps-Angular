@@ -11,6 +11,9 @@ import { AboutComponent } from './components/about/about.component';
 import { FormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthInterceptor } from './interceptors/auth/auth-interceptor.service';
+import { UsersComponent } from './components/users/users.component';
+import { MeetupCreationComponent } from './components/meetup-creation/meetup-creation.component';
+import { MeetupEditComponent } from './components/meetup-edit/meetup-edit.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +23,9 @@ import { AuthInterceptor } from './interceptors/auth/auth-interceptor.service';
     HeaderComponent,
     AuthComponent,
     AboutComponent,
+    UsersComponent,
+    MeetupCreationComponent,
+    MeetupEditComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, NgOptimizedImage, HttpClientModule, FormsModule],
   providers: [

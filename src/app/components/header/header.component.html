@@ -35,11 +35,18 @@
     <span
       *ngIf="authService.isUserAuthorized$ | async"
       routerLink="/meetups"
+      routerLinkActive="active"
       class="header-nav__item"
       >Все митапы</span
     >
     <span *ngIf="authService.isUserAuthorized$ | async" class="header-nav__item">Мои митапы</span>
-    <span *ngIf="authService.isUserAdmin$ | async" class="header-nav__item">Пользователи</span>
+    <span
+      *ngIf="authService.isUserAdmin$ | async"
+      routerLink="/users"
+      routerLinkActive="active"
+      class="header-nav__item"
+      >Пользователи</span
+    >
   </nav>
   <div class="header-controls">
     <img
