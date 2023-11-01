@@ -17,12 +17,14 @@ import { Meetup } from '../../entities/meetup';
 export class MeetupComponent implements OnInit {
   public isShort: boolean;
   public isUserSubbed = false;
+  public isUserOwner = false;
   constructor() {
     this.isShort = true;
   }
 
   ngOnInit(): void {
     this.isUserSubbed = !!this.data.users.find((item) => item.id === this.currentUserId);
+    this.isUserOwner = this.data.owner.id === this.currentUserId;
   }
 
   handleViewState() {

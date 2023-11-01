@@ -4,16 +4,22 @@ import { environment } from '../../../environments/environment';
 import { IMeetup } from '../../../utils/types/types';
 import { BehaviorSubject, map, Subject, takeUntil } from 'rxjs';
 import { Meetup } from '../../entities/meetup';
+import { AuthService } from '../auth/auth.service';
 
 @Injectable()
 export class MeetupsService implements OnDestroy {
   private destroy$ = new Subject<void>();
   private readonly refreshDataInterval: NodeJS.Timeout;
   public meetups$: BehaviorSubject<Meetup[]> = new BehaviorSubject([] as Meetup[]);
+  public myMeetups$: BehaviorSubject<Meetup[]> = new BehaviorSubject([] as Meetup[]);
 
-  constructor(private http: HttpClient) {
+  constructor(
+    private http: HttpClient,
+    private authService: AuthService
+  ) {
     this.getMeetups();
     this.meetups$.pipe(takeUntil(this.destroy$));
+    this.myMeetups$.pipe(takeUntil(this.destroy$));
     this.refreshDataInterval = setInterval(() => this.getMeetups(), 10000);
   }
 
@@ -46,6 +52,9 @@ export class MeetupsService implements OnDestroy {
       )
       .subscribe((value) => {
         this.meetups$.next(value);
+        this.myMeetups$.next(
+          value.filter((item) => item.owner.id === this.authService.userInfo?.id)
+        );
       });
   }
 

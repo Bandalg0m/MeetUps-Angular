@@ -39,7 +39,13 @@
       class="header-nav__item"
       >Все митапы</span
     >
-    <span *ngIf="authService.isUserAuthorized$ | async" class="header-nav__item">Мои митапы</span>
+    <span
+      *ngIf="authService.isUserAuthorized$ | async"
+      routerLink="/my-meetups"
+      routerLinkActive="active"
+      class="header-nav__item"
+      >Мои митапы</span
+    >
     <span
       *ngIf="authService.isUserAdmin$ | async"
       routerLink="/users"

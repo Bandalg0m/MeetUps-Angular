@@ -93,6 +93,9 @@
   padding: 10px 15px;
   border-radius: var(--border-radius-normal);
   box-shadow: var(--shadow-normal);
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 @mixin arrow-button {
@@ -100,6 +103,9 @@
   height: 50px;
   padding: 14px 20px 13px 21px;
   border-radius: var(--border-radius-normal);
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 /* INPUTS*/

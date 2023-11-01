@@ -1,0 +1,8 @@
+<div class="my-meetups-wrapper">
+  <div
+    class="my-meetups-item"
+    *ngFor="let meetup of meetupsService.myMeetups$ | async; trackBy: trackByFn"
+  >
+    <app-meetup [currentUserId]="currentUserId" [data]="meetup"></app-meetup>
+  </div>
+</div>
