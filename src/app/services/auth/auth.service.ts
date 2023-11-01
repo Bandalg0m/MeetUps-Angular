@@ -3,13 +3,21 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { BehaviorSubject, map } from 'rxjs';
 import { IUser } from '../../../utils/types/types';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
   public isUserAuthorized$: BehaviorSubject<boolean> = new BehaviorSubject(false);
-  constructor(private http: HttpClient) {}
+  public isUserAdmin$: BehaviorSubject<boolean> = new BehaviorSubject(false);
+  constructor(
+    private http: HttpClient,
+    private router: Router
+  ) {
+    this.isUserAuthorized$.next(!!this.token);
+    this.isUserAdmin$.next(!!this.userInfo?.roles.find((item) => item.name === 'ADMIN'));
+  }
 
   public login(email: string, password: string) {
     return this.http
@@ -18,6 +26,7 @@ export class AuthService {
         map((res) => {
           res.token ? localStorage.setItem('auth-token', res.token) : null;
           this.isUserAuthorized$.next(true);
+          this.isUserAdmin$.next(!!this.userInfo?.roles.find((item) => item.name === 'ADMIN'));
         })
       );
   }
@@ -25,6 +34,8 @@ export class AuthService {
   public logout() {
     localStorage.removeItem('auth-token');
     this.isUserAuthorized$.next(false);
+    this.isUserAdmin$.next(false);
+    void this.router.navigate(['/auth']);
   }
 
   public get token(): string | null {

@@ -39,14 +39,25 @@
       >Все митапы</span
     >
     <span *ngIf="authService.isUserAuthorized$ | async" class="header-nav__item">Мои митапы</span>
-    <span *ngIf="authService.isUserAuthorized$ | async" class="header-nav__item">Пользователи</span>
+    <span *ngIf="authService.isUserAdmin$ | async" class="header-nav__item">Пользователи</span>
   </nav>
   <div class="header-controls">
     <img
+      *ngIf="!(authService.isUserAuthorized$ | async)"
       class="header-controls__auth"
       routerLink="/auth"
       ngSrc="assets/images/controls/mdi_person.svg"
       alt="Person"
+      height="50"
+      width="50"
+      priority
+    />
+    <img
+      *ngIf="authService.isUserAuthorized$ | async"
+      (click)="logout()"
+      class="header-controls__auth"
+      ngSrc="assets/images/controls/logout.svg"
+      alt="Logout"
       height="50"
       width="50"
       priority
